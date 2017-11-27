@@ -1,3 +1,0 @@
-D:\UnrealProjects\HelloUnreal\Source\HelloUnreal\HelloUnreal.Build.cs
-D:\UnrealProjects\HelloUnreal\Source\HelloUnreal.Target.cs
-D:\UnrealProjects\HelloUnreal\Source\HelloUnrealEditor.Target.cs
