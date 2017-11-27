@@ -2,6 +2,7 @@
 
 #include "PositionReport.h"
 #include "Gameframework/Actor.h"
+#include "Math/Vector.h"
 
 
 // Sets default values for this component's properties
@@ -20,7 +21,9 @@ void UPositionReport::BeginPlay()
 	Super::BeginPlay();
 	AActor* actor = GetOwner();
 	FString myName = actor->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Position report is alive on %s!!"), *myName);
+	FVector position = actor->GetActorLocation();
+
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *myName, *position.ToString());
 	
 }
 
