@@ -23,7 +23,6 @@ void UOpenDoor::BeginPlay()
 	rotator.ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *rotator.ToString());
 	speed = 30.0f;
-	minAngle = -60.0f;
 }
 
 
@@ -31,7 +30,7 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	if (rotator.Yaw >= minAngle) {
+	if (rotator.Yaw >= -OpenAngle) {
 		rotator.Add(0, -speed * DeltaTime, 0);
 		owner->SetActorRotation(rotator);
 	}

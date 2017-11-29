@@ -28,6 +28,7 @@ private:
 	AActor* owner;
 	FRotator rotator;
 	float speed;
-	float minAngle;
+	UPROPERTY()
+	float OpenAngle = 60.0f;
 	
 };
