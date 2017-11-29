@@ -29,13 +29,13 @@ public:
 private:
 	AActor* owner;
 	FRotator rotator;
-	float speed;
+	UPROPERTY(EditAnywhere)
+	float speed = 30.0f;
 	UPROPERTY(VisibleAnywhere)
 	float OpenAngle = 60.0f;
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
-	UPROPERTY(EditAnywhere)
-	AActor* Openner;
+	AActor* Opener;
 	int open;
 	
 };

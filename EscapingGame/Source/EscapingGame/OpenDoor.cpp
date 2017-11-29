@@ -2,6 +2,8 @@
 
 #include "OpenDoor.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -20,9 +22,7 @@ void UOpenDoor::BeginPlay()
 
 	owner = GetOwner();
 	rotator = owner->GetActorRotation();
-	rotator.ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *rotator.ToString());
-	speed = 30.0f;
+	Opener = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 
@@ -30,7 +30,7 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	open = PressurePlate && PressurePlate->IsOverlappingActor(Openner);
+	open = PressurePlate && PressurePlate->IsOverlappingActor(Opener);
 	if (open) {
 		if (rotator.Yaw >= -OpenAngle) {
 			rotator.Add(0, -speed * DeltaTime, 0);
