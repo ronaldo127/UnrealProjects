@@ -30,9 +30,17 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	if (rotator.Yaw >= -OpenAngle) {
-		rotator.Add(0, -speed * DeltaTime, 0);
-		owner->SetActorRotation(rotator);
+	open = PressurePlate && PressurePlate->IsOverlappingActor(Openner);
+	if (open) {
+		if (rotator.Yaw >= -OpenAngle) {
+			rotator.Add(0, -speed * DeltaTime, 0);
+			owner->SetActorRotation(rotator);
+		}
+	} else {
+		if (rotator.Yaw <= 0.0f) {
+			rotator.Add(0, speed * DeltaTime, 0);
+			owner->SetActorRotation(rotator);
+		}
 	}
 }
 
