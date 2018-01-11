@@ -15,7 +15,9 @@ class ESCAPINGGAME_API UGrabber : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UGrabber();
-
+private:
+	UPROPERTY(EditAnywhere)
+	float ReachDistance = 50.0f;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
