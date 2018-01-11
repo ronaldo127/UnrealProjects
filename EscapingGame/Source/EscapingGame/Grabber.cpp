@@ -44,7 +44,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	FVector EndPoint = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * ReachDistance;
 
-	//UE_LOG(LogTemp, Warning, TEXT("Location: %s and Rotation: %s"), *PlayerViewPointLocation.ToString(), *PlayerViewPointRotation.ToString());
+	///UE_LOG(LogTemp, Warning, TEXT("Location: %s and Rotation: %s"), *PlayerViewPointLocation.ToString(), *PlayerViewPointRotation.ToString());
 
 	DrawDebugLine(
 		GetWorld(),
@@ -57,8 +57,21 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		10.f
 	);
 
-	// raycast
+	/// raycast
+	FHitResult OutHit;
+	FCollisionObjectQueryParams QueryObjectParams(ECollisionChannel::ECC_PhysicsBody);
+	FCollisionQueryParams QueryParams(FName(TEXT("")), false, GetOwner());
+	GetWorld()->LineTraceSingleByObjectType(
+		OutHit,
+		PlayerViewPointLocation,
+		EndPoint,
+		QueryObjectParams,
+		QueryParams
+	);
 	
-	// handle hit
+	/// handle hit
+	if (OutHit.IsValidBlockingHit()) {
+		UE_LOG(LogTemp, Warning, TEXT("I hit %s"), *OutHit.GetActor()->GetName());
+	}
 }
 
