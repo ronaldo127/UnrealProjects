@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
 
 
@@ -18,6 +19,8 @@ public:
 private:
 	UPROPERTY(EditAnywhere)
 	float ReachDistance = 50.0f;
+	UPhysicsHandleComponent* PhysicsHandler = nullptr;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
